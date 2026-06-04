@@ -103,4 +103,32 @@ Avoids duplicate logic
 
 Easy to extend later (e.g., transaction history)
 
+Example: Transfer Both Ways
+
+# A to B
+ex: account1.transfer(100, account2)
+
+# B to  A
+ex: account2.transfer(50, account1)
+
+No extra conditions needed.
+The OOP design handles it naturally.
+
+Visual Understanding
+Here’s the mental model:
+
+account1.transfer(100, account2)
+   sender = account1
+   receiver = account2
+
+account2.transfer(50, account1)
+   sender = account2
+   receiver = account1
+
+Whichever object calls the method is the sender.
+
+we want to add safety for that
+we can add a check to prevent transferring negative or zero amounts:
+
+def transfer(self, amount, receiver_account)  and def transfer_bothways(self, amount, receiver_account) i have added methods to understand but we avoid def transfer(self, amount, receiver_account) in real working environments 
 
