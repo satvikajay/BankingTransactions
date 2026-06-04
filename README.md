@@ -76,3 +76,31 @@ Add transaction history
 Add PIN authentication
 
 Add interest calculation
+
+will enhance one by one 
+
+Add transfer() between accounts  will add this feature now 
+
+Feature 1: Add transfer() Between Accounts
+
+Goal
+Allow money to move from one BankingTransactions object to another.
+
+What transfer() must do
+Check if sender has enough balance
+
+Deduct amount from sender
+
+Add amount to receiver
+
+Return success/failure message
+
+Update Banking_Transactions.py class with Transfer function 
+
+Reuses withdraw() and deposit()
+
+Avoids duplicate logic
+
+Easy to extend later (e.g., transaction history)
+
+
