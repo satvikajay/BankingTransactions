@@ -12,7 +12,7 @@ Check account balance
 
 A small CLI (Command Line Interface) loop is included so users can interact with the account through text input.
 
-🧩 Class Structure
+Class Structure
 BankingTransactions
 This class stores the account balance and provides three main methods:
 
@@ -68,13 +68,10 @@ Code
 python Banking_Transactions.py
 Follow the on‑screen prompts.
 
-📌 Future Enhancements (Optional)
+Future Enhancements (Optional)
 Add transfer() between accounts
-
 Add transaction history
-
 Add PIN authentication
-
 Add interest calculation
 
 will enhance one by one 
@@ -101,14 +98,12 @@ Reuses withdraw() and deposit()
 
 Avoids duplicate logic
 
-Easy to extend later (e.g., transaction history)
+Example: Above Transfer method is one way that means always Account 1 to Account 2 but transfer takes place Both Ways Account 1 to Account 2 and viceversa
 
-Example: Transfer Both Ways
-
-# A to B
+# Account 1 to Account 2
 ex: account1.transfer(100, account2)
 
-# B to  A
+# Account 2 to Account 1
 ex: account2.transfer(50, account1)
 
 No extra conditions needed.
@@ -125,12 +120,12 @@ account2.transfer(50, account1)
    sender = account2
    receiver = account1
 
-Whichever object calls the method is the sender.
+Which ever object calls the method is the sender.
 
 we want to add safety for that
-we can add a check to prevent transferring negative or zero amounts:
-
-def transfer(self, amount, receiver_account)  and def transfer_bothways(self, amount, receiver_account) i have added methods to understand but we avoid def transfer(self, amount, receiver_account) in real working environments 
+we need to add a check to prevent transferring negative or zero amounts
+   ex:      if amount <= 0:
+              print("Invalid amount")
 
 Feature 2: Add Transaction History
 What we want
@@ -152,5 +147,37 @@ amount
 
 resulting balance
 
-timestamp
+timestamp 
+
+Feature 3: PIN Authentication (Integrated Into Your Code)
+What this feature adds
+User must enter a PIN before performing:
+
+deposit
+
+withdraw
+
+transfer_bothways
+
+PIN is set once when the account is created
+
+If PIN is wrong transaction is blocked
+
+After 3 wrong attempts  account locks
+
+How we implement it
+We add:
+
+self.pin
+Stores the PIN for each account.
+
+self.is_locked
+Prevents further transactions after too many wrong attempts.
+
+authenticate()
+Checks PIN before allowing any action.
+
+Modify deposit(), withdraw(), transfer_bothways()
+Each will call authenticate() first. 
+for better understanding adding new file with enhanced feature3  in Banking_Transactions_Update.py
 
