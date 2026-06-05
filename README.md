@@ -12,13 +12,13 @@ Check account balance
 
 A small CLI (Command Line Interface) loop is included so users can interact with the account through text input.
 
-Class Structure
+Class Structure 
 BankingTransactions
 This class stores the account balance and provides three main methods:
 
 withdraw(amount) — Deducts money if sufficient balance exists
 
-deposit(amount) — Adds money to the account
+deposit(amount) — Adds money to the account 
 
 check_balance() — Returns the current balance
 
@@ -376,7 +376,7 @@ Real‑bank style monitoring
 
 Audit trail + fraud engine working together
 
-Here are the rules banks commonly use, mapped to your system:
+Here are the rules banks commonly use, mapped to my system:
 
 1️. High‑Value Withdrawal Rule
       
@@ -419,6 +419,9 @@ Here are the rules banks commonly use, mapped to your system:
       brute‑force attempts
       
       compromised account
+
+
+   
 
       
 
