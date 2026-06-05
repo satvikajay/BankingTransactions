@@ -69,10 +69,10 @@ python Banking_Transactions.py
 Follow the on‑screen prompts.
 
 Future Enhancements (Optional)
-Add transfer() between accounts
-Add transaction history
-Add PIN authentication
-Add interest calculation
+1. Add transfer() between accounts
+2. Add transaction history
+3. Add PIN authentication
+4. Add interest calculation
 
 will enhance one by one 
 
@@ -149,7 +149,7 @@ resulting balance
 
 timestamp 
 
-Feature 3: PIN Authentication (Integrated Into Your Code)
+Feature 3: PIN Authentication (Enhanced feature)
 What this feature adds
 User must enter a PIN before performing:
 
@@ -236,6 +236,118 @@ check balance
 
 Status: Completed
 
+Transaction History (Audit Trail)  self.add_history(action, amount) 
+
+ex:creates entries like: 2026-06-04 22:48:20 | Withdraw | Amount: 200 | Balance: 1300
+
+audit trails for 
+
+1️. Fraud detection
+Banks analyze transaction logs to detect unusual activity:
+
+too many withdrawals
+
+large transfers
+
+repeated failed PIN attempts
+
+suspicious patterns
+
+this application logs:
+
+failed withdraw
+
+failed transfer
+
+wrong PIN attempts
+
+account lock
+
+These logs help detect fraud.
+
+2️. Customer disputes
+Let's say for ex:  If a customer says:
+
+“I didn’t withdraw ₹1500 rupees”
+
+The bank checks the transaction history.
+ 
+application supports this
+history shows:
+
+timestamp
+
+action
+
+amount
+
+balance
+
+So we can verify what happened.
+
+3️.  Compliance
+Banks must follow laws (KYC, AML, RBI/FDIC rules).
+They must keep logs for years.
+
+Application supports this
+history list is a simplified version of:
+
+mandatory audit logs
+
+required by regulators
+
+4. Account reconciliation
+Banks compare:
+
+system balance
+
+transaction logs
+
+customer statements
+
+to ensure everything matches.
+
+Application supports this
+logs allow us to reconstruct:
+
+every deposit
+
+every withdrawal
+
+every transfer
+
+So we can verify the final balance.
+
+5️. Transaction tracing
+Banks must trace:
+
+where money came from
+
+where it went
+
+who sent it
+
+who received it
+
+Application supports this
+Application log:
+
+Transfer Sent
+
+Transfer Received
+
+This allows tracing money flow between accounts.
+
+we have all this in my code in below method
+
+def add_history(self, action, amount=0):
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    entry = f"{timestamp} | {action} | Amount: {amount} | Balance: {self.balance}"
+    self.history.append(entry)
+This is my application audit trail engine.
+
+Everything else (fraud detection, compliance, tracing) is what banks use audit trails for, not something code directly.
+
 Feature 3 — PIN Authentication
 1. 4‑digit PIN
 2. PIN validation
@@ -247,6 +359,70 @@ Feature 3 — PIN Authentication
 8. secure deposit/withdraw
 
 Status: Completed
+
+Enhance Feature 3 
+
+Fraud Detection Rules (Real Banking Style)
+
+Fraud detection is NOT one feature - it’s a set of rules that monitor suspicious behavior.
+
+I just enhanced code by adding below set of rules 
+
+Rule‑based fraud detection
+
+Automatic alerts
+
+Real‑bank style monitoring
+
+Audit trail + fraud engine working together
+
+Here are the rules banks commonly use, mapped to your system:
+
+1️. High‑Value Withdrawal Rule
+      
+      If a user withdraws more than a threshold (eg. 10,000 rupees), flag it.
+      
+      Why?
+      Large withdrawals may indicate:
+      
+      stolen PIN
+      account takeover
+      urgent fraud pattern
+
+2️. Multiple Failed PIN Attempts
+     
+      I already implemented this in my code:
+   
+      3 wrong PIN attempts -> lock account
+      This is a fraud‑prevention rule.
+
+3️. Rapid Multiple Withdrawals
+
+      If the user withdraws money 3 times within 1 minute, flag it.
+      
+      Why?
+      Fraudsters often drain accounts quickly.
+
+4️. Large Transfer Out Rule
+
+      If a transfer exceeds a threshold (eg. 20,000 rupees), flag it.
+
+5️. Failed Transfer Attempts
+
+      If a user repeatedly tries to transfer more than their balance, flag it.
+
+      Why?
+      This may indicate:
+      
+      bot activity
+      
+      brute‑force attempts
+      
+      compromised account
+
+      
+
+
 
 
 
