@@ -1,39 +1,54 @@
 ##create: BankAccount class, deposit, withdraw, check balance, handling insufficient balance in account by giving inputs by user dynamically 
+import datetime
+
 class BankingTransactions:
     def __init__(self, balance):
         self.balance = balance
+        self.history = []  # store all transactions
+    
+    # Method to add transaction history with timestamp, action, amount, and balance
+    def add_history(self, action, amount=0):
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        entry = f"{timestamp} | {action} | Amount: {amount} | Balance: {self.balance}"
+        self.history.append(entry)
 
     def withdraw(self, amount):
         if self.balance >= amount:
             self.balance -= amount
+            self.add_history("Withdraw", amount) # Add to history
             return True
         else:
             print("No balance in account")
+            self.add_history("Failed Withdraw", amount) # Add failed attempt to history
             return False
 
     def deposit(self, amount):
         self.balance += amount
+        self.add_history("Deposit", amount) # Add to history
 
     def check_balance(self):
+        self.add_history("Check Balance", 0) # Add balance check to history
         return self.balance
-        
-    #transfer and  transfer_bothways duplicate functionality to avoid 
-    #that use only transfer_bothways(self, amount, receiver_account):
-    
-    def transfer(self, amount, receiver_account):
-        if self.withdraw(amount):
-            receiver_account.deposit(amount)
-            print(f"Transferred {amount} successfully.")
-        else:
-            print("Transfer failed due to insufficient funds.")
-    
+
+    #def transfer(self, amount, receiver_account):
+    #    if self.withdraw(amount):
+    #        receiver_account.deposit(amount)
+    #        self.add_history("Transfer Sent", amount) # Add transfer sent to history
+    #        receiver_account.add_history("Transfer Received", amount)
+    #        print(f"Transferred {amount} successfully.")
+    #    else:
+    #        print("Transfer failed due to insufficient funds.")
+
     def transfer_bothways(self, amount, receiver_account):
         if amount <= 0:
             print("Invalid amount")
+            self.add_history("Invalid Transfer Attempt", amount) # Add invalid transfer attempt to history
             return
 
         if self.withdraw(amount):
             receiver_account.deposit(amount)
+            self.add_history("Transfer Sent", amount) # Add transfer sent to history
+            receiver_account.add_history("Transfer Received", amount)
             print(f"Transferred {amount} successfully.")
         else:
             print("Transfer failed due to insufficient funds.")
@@ -54,7 +69,7 @@ print("\nYou can now perform actions on Account 1.")
 print("To transfer, money will be sent from Account 1 to Account 2.\n")
 
 while True:
-    action = input("Enter 'deposit', 'withdraw', 'check', 'transfer', 'transfer_bothways' , or 'exit': ").lower()
+    action = input("Enter 'deposit', 'withdraw', 'check', 'transfer', 'transfer_bothways' , 'history' , or 'exit': ").lower()
     
     if action == 'deposit':
         amount = float(input("Enter amount to deposit: "))
@@ -68,8 +83,7 @@ while True:
         
     elif action == 'check':
         print(f"Current balance: {account1.check_balance()}")
-    #elif action == 'transfer': and elif action == 'transfer_bothways' as we are using transfer_bothways(self, amount, receiver_account): 
-    #function we use only elif action == 'transfer_bothways'
+
     elif action == 'transfer':
         amount = float(input("Enter amount to transfer to Account 2: "))
         account1.transfer(amount, account2)
@@ -93,6 +107,17 @@ while True:
         print(f"Account 1 balance: {account1.check_balance()}")
         print(f"Account 2 balance: {account2.check_balance()}")
 
+    
+
+    elif action == 'history':
+        print("\n--- Account 1 History ---")
+        for entry in account1.history:
+            print(entry)
+
+        print("\n--- Account 2 History ---")
+        for entry in account2.history:
+            print(entry)
+        print("---------------------------\n")
 
     elif action == 'exit':
         print("Exiting the program.")
