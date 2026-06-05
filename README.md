@@ -181,3 +181,72 @@ Modify deposit(), withdraw(), transfer_bothways()
 Each will call authenticate() first. 
 for better understanding adding new file with enhanced feature3  in Banking_Transactions_Update.py
 
+
+In Banking_Transactions_Update.py
+
+this code is after Feature 3 (PIN Authentication), plus the fixes we added for:
+
+4‑digit PIN validation
+
+Account lock after 3 wrong attempts
+
+Skip double PIN during transfer -- enter pin at the starting point of the transfer amount 
+
+Return success/failure for transfer
+
+Check balance for both accounts
+
+Clean transaction history
+
+Correct transfer messages
+
+this code is now a fully working banking system with Feature 1, 2, and 3 completed.
+
+Below features
+
+Feature 1 — Basic Banking Operations
+1. deposit
+2. withdraw
+3. check balance
+4. insufficient balance handling
+5. dynamic user input
+
+Status: Completed
+
+Feature 2 — Transaction History
+1. timestamp
+2. action
+3. amount
+4. balance
+5. logs for:
+
+deposit
+
+withdraw
+
+failed withdraw
+
+transfer sent
+
+transfer received
+
+failed transfer
+
+check balance
+
+Status: Completed
+
+Feature 3 — PIN Authentication
+1. 4‑digit PIN
+2. PIN validation
+3. authenticate() method
+4. wrong attempts counter
+5. account lock after 3 wrong attempts
+6. skip_auth for transfer
+7. no double PIN during transfer
+8. secure deposit/withdraw
+
+Status: Completed
+
+
+
