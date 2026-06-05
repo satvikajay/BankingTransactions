@@ -132,3 +132,25 @@ we can add a check to prevent transferring negative or zero amounts:
 
 def transfer(self, amount, receiver_account)  and def transfer_bothways(self, amount, receiver_account) i have added methods to understand but we avoid def transfer(self, amount, receiver_account) in real working environments 
 
+Feature 2: Add Transaction History
+What we want
+Every time the user performs an action, we store a record:
+
+deposit
+
+withdraw
+
+transfer (sent or received)
+
+balance check
+
+Each record should include:
+
+action type
+
+amount
+
+resulting balance
+
+timestamp
+
